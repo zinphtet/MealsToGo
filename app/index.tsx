@@ -1,10 +1,23 @@
-import { Text, View, SafeAreaView, StyleSheet , Platform , StatusBar} from "react-native";
-
+import React from "react";
+import {
+  Text,
+  View,
+  SafeAreaView,
+  StyleSheet,
+  Platform,
+  StatusBar,
+} from "react-native";
+import { Searchbar } from "react-native-paper";
 const Home = () => {
+  const [searchQuery, setSearchQuery] = React.useState("");
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.search}>
-        <Text>Search bar</Text>
+        <Searchbar
+          placeholder="Search"
+          onChangeText={setSearchQuery}
+          value={searchQuery}
+        />
       </View>
       <View style={styles.list}>
         <Text>list of all </Text>
@@ -15,8 +28,8 @@ const Home = () => {
 
 export default Home;
 
-const isAndroid  = Platform.OS === 'android'
-const statusBarHeight = StatusBar.currentHeight
+const isAndroid = Platform.OS === "android";
+const statusBarHeight = StatusBar.currentHeight;
 
 console.log(`StatusBar height: ${statusBarHeight}`);
 
@@ -27,11 +40,11 @@ const styles = StyleSheet.create({
   },
   search: {
     padding: 20,
-    backgroundColor : 'red'
+    // backgroundColor: "red",
   },
   list: {
     flex: 1,
     padding: 20,
-    backgroundColor : 'blue'
+    backgroundColor: "blue",
   },
 });
