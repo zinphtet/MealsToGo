@@ -1,4 +1,4 @@
-import { View, Text } from "react-native"
+import { View, Text, ScrollView } from "react-native"
 import CardComponent from "./item";
 import styled from "styled-components/native";
 const List = () => {
@@ -16,5 +16,6 @@ export default List;
 
 const ListContainer = styled(View)`
     gap:  20px;
+    /* scrollbar-width: 0px; */
 
 `
