@@ -1,3 +1,5 @@
+import List from "@/components/list";
+import Search from "@/components/search";
 import React from "react";
 import {
   Text,
@@ -9,18 +11,14 @@ import {
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 const Home = () => {
-  const [searchQuery, setSearchQuery] = React.useState("");
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.search}>
-        <Searchbar
-          placeholder="Search"
-          onChangeText={setSearchQuery}
-          value={searchQuery}
-        />
+        <Search/>
       </View>
       <View style={styles.list}>
-        <Text>list of all </Text>
+        <List/>
       </View>
     </SafeAreaView>
   );
