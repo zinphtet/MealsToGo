@@ -30,9 +30,10 @@ const CardComponent = () => (
 export default CardComponent;
 
 const CardTitle = styled.Text`
-  font-size: 24px;
+  font-size: ${props=>props.theme.fontSizes.title};
   font-weight: bold;
   color: #000;
+  font-family:${props=>props.theme.fonts.body}
 `;
 const StartInfoWrapper = styled.View`
   flex-direction: row;
@@ -45,6 +46,6 @@ const StarContainer = styled.View`
 `;
 
 const Address = styled.Text`
-  font-size: 14px;
+  font-size:  ${props=>props.theme.fontSizes.body};
   font-style: italic;
 `;
