@@ -60,11 +60,7 @@ const Home = () => {
         <Tab.Navigator
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
-              type IconType =
-                 "ios-home"
-                | "ios-home-outline"
-                | "ios-settings"
-                | "ios-settings-outline";
+            
               let iconName;
 
               if (route.name === "Home") {
@@ -75,9 +71,14 @@ const Home = () => {
 
               // Return the icon component
               // @ts-ignore
-              return <Ionicons name={iconName} size={size} color={color} />;
+              return <Ionicons name={iconName} size={size} color={color} style={{
+                 marginTop : focused ? -5 : 0
+              }} />;
             },
-            tabBarActiveTintColor : 'green'
+            tabBarActiveTintColor: "green",
+            tabBarLabel : ()=>{
+              return null;
+            }
           })}
         >
           <Tab.Screen name="Home" component={MainScreen} />
