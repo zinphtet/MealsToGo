@@ -16,6 +16,32 @@ import {
 import { Lato_400Regular, useFonts as useLato } from "@expo-google-fonts/lato";
 import theme from "@/theme";
 import { ThemeProvider } from "styled-components/native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from "@expo/vector-icons";
+const MainScreen = () => {
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.search}>
+        <Search />
+      </View>
+      <View style={styles.list}>
+        <List />
+      </View>
+    </SafeAreaView>
+  );
+};
+
+const SettingScreen = () => {
+  return (
+    <View>
+      <Text> This is setting screen</Text>
+    </View>
+  );
+};
+
+const Tab = createBottomTabNavigator();
+
 const Home = () => {
   let [fontsLoaded] = useOswald({
     Oswald_400Regular,
@@ -30,14 +56,34 @@ const Home = () => {
   }
   return (
     <ThemeProvider theme={theme}>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.search}>
-          <Search />
-        </View>
-        <View style={styles.list}>
-          <List />
-        </View>
-      </SafeAreaView>
+      <NavigationContainer independent={true}>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              type IconType =
+                 "ios-home"
+                | "ios-home-outline"
+                | "ios-settings"
+                | "ios-settings-outline";
+              let iconName;
+
+              if (route.name === "Home") {
+                iconName = focused ? "home" : "home-outline";
+              } else if (route.name === "Settings") {
+                iconName = focused ? "settings" : "settings-outline";
+              }
+
+              // Return the icon component
+              // @ts-ignore
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor : 'green'
+          })}
+        >
+          <Tab.Screen name="Home" component={MainScreen} />
+          <Tab.Screen name="Settings" component={SettingScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
     </ThemeProvider>
   );
 };
