@@ -78,7 +78,9 @@ const Home = () => {
             tabBarActiveTintColor: "green",
             tabBarLabel : ()=>{
               return null;
-            }
+            },
+
+            headerShown : false
           })}
         >
           <Tab.Screen name="Home" component={MainScreen} />
@@ -99,15 +101,13 @@ console.log(`StatusBar height: ${statusBarHeight}`);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // marginTop :isAndroid ? statusBarHeight : 0
   },
   search: {
-    padding: 20,
-    // backgroundColor: "red",
+    paddingHorizontal : 20,
+    paddingVertical : 10
   },
   list: {
     flex: 1,
-    padding: 20,
-    // backgroundColor: "blue",
+   paddingHorizontal : 10,
   },
 });

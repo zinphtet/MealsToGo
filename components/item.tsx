@@ -7,7 +7,7 @@ const imgUrl =
   "https://images.pexels.com/photos/18925511/pexels-photo-18925511/free-photo-of-petit-minou-lighthouse-in-evening.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
 
 const CardComponent = () => (
-  <Card>
+  <Card style={{marginBottom : 20}}>
     <Card.Cover source={{ uri: imgUrl }} />
     <Card.Content style={{ paddingVertical: 20, gap: 10 }}>
       <CardTitle>This is card title</CardTitle>
