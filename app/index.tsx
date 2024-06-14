@@ -19,19 +19,19 @@ import { ThemeProvider } from "styled-components/native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
+import useLoadingStore from "@/store/search-loading";
 import Loading from "@/components/Loading";
-const MainScreen = () => {
-  const [loading, setLoading] = useState(true);
 
+const MainScreen = () => {
+  const { isLoading } = useLoadingStore();
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.search}>
         <Search />
       </View>
-      {/* {loading && <ActivityIndicator />} */}
-      {loading && <Loading />}
+      {isLoading && <Loading />}
 
-      {!Loading && (
+      {!isLoading && (
         <View style={styles.list}>
           <List />
         </View>
@@ -80,6 +80,7 @@ const Home = () => {
               // @ts-ignore
               return (
                 <Ionicons
+                  // @ts-ignore
                   name={iconName}
                   size={size}
                   color={color}
