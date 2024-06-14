@@ -1,6 +1,6 @@
 import List from "@/components/list";
 import Search from "@/components/search";
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   SafeAreaView,
@@ -19,15 +19,23 @@ import { ThemeProvider } from "styled-components/native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
+import Loading from "@/components/Loading";
 const MainScreen = () => {
+  const [loading, setLoading] = useState(true);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.search}>
         <Search />
       </View>
-      <View style={styles.list}>
-        <List />
-      </View>
+      {/* {loading && <ActivityIndicator />} */}
+      {loading && <Loading />}
+
+      {!Loading && (
+        <View style={styles.list}>
+          <List />
+        </View>
+      )}
     </SafeAreaView>
   );
 };
@@ -60,7 +68,6 @@ const Home = () => {
         <Tab.Navigator
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
-            
               let iconName;
 
               if (route.name === "Home") {
@@ -71,16 +78,23 @@ const Home = () => {
 
               // Return the icon component
               // @ts-ignore
-              return <Ionicons name={iconName} size={size} color={color} style={{
-                 marginTop : focused ? -5 : 0
-              }} />;
+              return (
+                <Ionicons
+                  name={iconName}
+                  size={size}
+                  color={color}
+                  style={{
+                    marginTop: focused ? -5 : 0,
+                  }}
+                />
+              );
             },
             tabBarActiveTintColor: "green",
-            tabBarLabel : ()=>{
+            tabBarLabel: () => {
               return null;
             },
 
-            headerShown : false
+            headerShown: false,
           })}
         >
           <Tab.Screen name="Home" component={MainScreen} />
@@ -103,11 +117,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   search: {
-    paddingHorizontal : 20,
-    paddingVertical : 10
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
   list: {
     flex: 1,
-   paddingHorizontal : 10,
+    paddingHorizontal: 10,
   },
 });
