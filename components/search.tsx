@@ -9,7 +9,7 @@ const Search = () => {
   const search = (text: string) => {
     setSearchQuery(text);
     setLoading(true);
-    restaurantRequest("hello")
+    restaurantRequest(searchQuery)
       .then((data) => {
         console.log(data);
       })
